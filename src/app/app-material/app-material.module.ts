@@ -3,19 +3,35 @@ import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatAutocompleteModule,
-  MatButtonModule, MatButtonToggleModule, MatCardModule,
-  MatCheckboxModule, MatChipsModule,
-  MatDatepickerModule, MatDialogModule, MatExpansionModule,
-  MatFormFieldModule, MatGridListModule, MatIconModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
   MatInputModule,
   MatListModule,
-  MatMenuModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule,
+  MatMenuModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
   MatRadioModule,
   MatSelectModule,
   MatSidenavModule,
   MatSliderModule,
-  MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatStepperModule, MatTableModule, MatTabsModule,
-  MatToolbarModule, MatTooltipModule
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
 
 // Angular Material Components
@@ -89,6 +105,8 @@ import {
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+
+
   ],
   declarations: []
 })
