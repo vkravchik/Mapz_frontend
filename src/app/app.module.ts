@@ -12,6 +12,7 @@ import {ErrorInterceptor} from './helpers/error.interceptor';
 import { HomeComponent } from './dashboard/home/home.component';
 import {routing} from './app.routing';
 import { PurchasedTicketComponent } from './dashboard/purchased-ticket/purchased-ticket.component';
+import { TicketsComponent } from './dashboard/tickets/tickets.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PurchasedTicketComponent } from './dashboard/purchased-ticket/purchased
     RegisterComponent,
     HomeComponent,
     PurchasedTicketComponent,
+    TicketsComponent,
   ],
   imports: [
     BrowserModule,

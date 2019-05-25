@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FilmService} from '../../services/film.service';
 import {Film} from '../../models/Film';
 import {MatTableDataSource} from '@angular/material';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ export class HomeComponent implements OnInit {
   dataSource = new MatTableDataSource<Film>();
   role: string;
 
-  constructor(private filmService: FilmService) { }
+  constructor(private filmService: FilmService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getAll();
@@ -23,5 +25,9 @@ export class HomeComponent implements OnInit {
     this.filmService.getAll().subscribe(res => {
       this.dataSource.data = res;
     });
+  }
+
+  buyTicket(id) {
+    this.router.navigateByUrl(`tickets/film/${id}`);
   }
 }

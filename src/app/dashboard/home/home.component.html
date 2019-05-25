@@ -61,7 +61,7 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary">Buy</button>
+      <button mat-raised-button color="primary" (click)="buyTicket(item.id)">Buy</button>
       <div class="admin-action" *ngIf="role === 'ROLE_ADMIN'">
         <button mat-flat-button color="warn">DELETE</button>
         <button mat-raised-button>EDIT</button>
