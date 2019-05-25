@@ -11,6 +11,7 @@ import {JwtInterceptor} from './helpers/jwt.interceptor';
 import {ErrorInterceptor} from './helpers/error.interceptor';
 import { HomeComponent } from './dashboard/home/home.component';
 import {routing} from './app.routing';
+import { PurchasedTicketComponent } from './dashboard/purchased-ticket/purchased-ticket.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {routing} from './app.routing';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    PurchasedTicketComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,13 +2,13 @@
   <h2>Login</h2>
   <mat-form-field>
     <input matInput type="text" formControlName="username" class="form-control"
-           [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Enter username">
+           placeholder="Enter username">
     <mat-error *ngIf="submitted && f.username.errors">Error in username</mat-error>
   </mat-form-field>
   <br>
   <mat-form-field>
     <input matInput type="password" formControlName="password" class="form-control"
-           [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Enter your password">
+           placeholder="Enter your password">
     <mat-error *ngIf="submitted && f.password.errors">Password is required</mat-error>
   </mat-form-field>
   <div class="form-group-button">
