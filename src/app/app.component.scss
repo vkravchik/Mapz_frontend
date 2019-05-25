@@ -82,6 +82,9 @@ h1.example-app-name {
   .genre-card:not(:last-child):after {
     content: ", ";
   }
+  .admin-action {
+    margin-top: 5px;
+  }
 }
 
 

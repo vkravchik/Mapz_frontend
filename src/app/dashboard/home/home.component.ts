@@ -3,6 +3,7 @@ import {FilmService} from '../../services/film.service';
 import {Film} from '../../models/Film';
 import {MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
+import {Singleton} from '../../models/Singleton';
 
 @Component({
   selector: 'app-home',
