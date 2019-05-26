@@ -9,6 +9,6 @@ export class AppComponent {
   title = 'MapzProject';
 
   items = [
-    {title: 'Користувачі', path: '/user'},
+    {title: 'Мій Профіль', path: '/user'},
   ];
 }

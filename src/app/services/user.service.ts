@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {User} from '../models/User';
 import {environment} from '../../environments/environment';
 
@@ -27,5 +27,12 @@ export class UserService {
 
   delete(id: number) {
     return this.http.delete(`${environment.apiUrl}/users/${id}`);
+  }
+
+  getByUsername(username: string) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    const params = new HttpParams().set('username', username);
+    return this.http.get(`${environment.apiUrl}/users/findByUsername`, {headers: headers, params: params});
   }
 }

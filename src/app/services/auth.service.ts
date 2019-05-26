@@ -5,6 +5,8 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 import {Singleton} from '../models/Singleton';
+import * as jwt_decode from 'jwt-decode';
+import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,8 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private userService: UserService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -31,6 +34,12 @@ export class AuthService {
           localStorage.setItem('currentUser', JSON.stringify(user));
           // SINGLETON
           Singleton.getInstance(user.accessToken);
+          // USER ID
+          const token = localStorage.getItem('token');
+          this.userService.getByUsername(jwt_decode(token).username).subscribe((res: User) => {
+            localStorage.setItem('id', res.id);
+          });
+          //
           this.currentUserSubject.next(user);
         }
 

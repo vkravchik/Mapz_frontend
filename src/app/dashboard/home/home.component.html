@@ -54,7 +54,7 @@
       <mat-card-title>{{item.name}}</mat-card-title>
       <mat-card-subtitle><span *ngFor="let genre of item.genres" class="genre-card">{{genre.name}}</span></mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="{{item.url}}" alt="Photo of a Shiba Inu">
+    <img mat-card-sm-image src="{{item.url}}" alt="Photo of a Shiba Inu">
     <mat-card-content>
       <p>
         {{item.description | slice:0:70}}...

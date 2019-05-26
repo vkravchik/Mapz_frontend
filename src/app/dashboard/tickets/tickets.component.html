@@ -1,3 +1,33 @@
-<p>
-  tickets works!
-</p>
+<div class="ticket-page">
+  <div>
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>{{dataSoruceCard.name}}</mat-card-title>
+        <mat-card-subtitle><span *ngFor="let genre of dataSoruceCard.genres" class="genre-card">{{genre.name}}</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{dataSoruceCard.url}}" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          {{dataSoruceCard.description}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="tickets">
+    <label id="example-radio-group-label">Pick your hall and date-time to {{dataSoruceCard.name}}</label>
+    <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group">
+      <mat-radio-button class="example-radio-button" *ngFor="let item of dataSoruceTickets" [value]="item.id" (change)="cooseTicket(item.id)">
+        Hall: {{item.hall.name}}, date: <b>{{item.date}}</b> at <i>{{item.time}}</i>
+      </mat-radio-button>
+    </mat-radio-group>
+    <mat-action-list>
+      <button mat-raised-button color="primary" (click)="buysTicket()">Buy</button>
+    </mat-action-list>
+  </div>
+</div>

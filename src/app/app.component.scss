@@ -85,6 +85,27 @@ h1.example-app-name {
   .admin-action {
     margin-top: 5px;
   }
+//  TICKET LIST
+  .example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+
+  .example-radio-button {
+    margin: 5px;
+  }
+  .ticket-page {
+    display: flex;
+  }
+  .tickets {
+    margin: 10px;
+  }
+//  MODAL
+  .modal {
+    width: 200px;
+    height: auto;
+  }
 }
 
 
