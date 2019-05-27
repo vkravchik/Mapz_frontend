@@ -37,7 +37,7 @@ export class AuthService {
           // USER ID
           const token = localStorage.getItem('token');
           this.userService.getByUsername(jwt_decode(token).username).subscribe((res: User) => {
-            localStorage.setItem('id', res.id);
+            localStorage.setItem('id', res.id.toString());
           });
           //
           this.currentUserSubject.next(user);

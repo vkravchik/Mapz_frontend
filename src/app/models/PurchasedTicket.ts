@@ -5,4 +5,5 @@ export class PurchasedTicket {
   id: number;
   ticket: Ticket;
   user: User;
+  status: boolean;
 }

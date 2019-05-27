@@ -14,6 +14,7 @@ import {routing} from './app.routing';
 import {PurchasedTicketComponent} from './dashboard/purchased-ticket/purchased-ticket.component';
 import {TicketsComponent} from './dashboard/tickets/tickets.component';
 import {PaymentComponent} from './dashboard/dialogs/payment/payment.component';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {PaymentComponent} from './dashboard/dialogs/payment/payment.component';
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    DatePipe
 
   ],
   entryComponents: [

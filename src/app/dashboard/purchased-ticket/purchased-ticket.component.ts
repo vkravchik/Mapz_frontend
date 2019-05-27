@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
+import {PurchasedService} from '../../services/purchased.service';
 
 @Component({
   selector: 'app-purchased-ticket',
@@ -9,12 +9,40 @@ import {environment} from '../../../environments/environment';
 })
 export class PurchasedTicketComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  toggle = false;
+  dataSource;
+
+  constructor(private http: HttpClient,
+              private purchasedService: PurchasedService) {
+  }
 
   ngOnInit() {
-    this.http.get(`${environment.apiUrl}/tickets`).subscribe(res => {
+    this.getTickets();
+  }
+
+  getTickets() {
+    if (this.toggle) {
+      this.purchasedService.getAllByUseridArchived(localStorage.getItem('id')).subscribe(res => {
+        this.dataSource = res;
+        console.log(res);
+      });
+    }
+    this.purchasedService.getAllByUserid(localStorage.getItem('id')).subscribe(res => {
+      this.dataSource = res;
       console.log(res);
     });
   }
 
+  archiveTicket(id: number) {
+    console.log(id);
+    this.purchasedService.setStatusTrue(id).subscribe(res => {
+      console.log(res);
+    });
+    this.getTickets();
+  }
+
+  changeToggle() {
+    this.toggle = !this.toggle;
+    this.getTickets();
+  }
 }

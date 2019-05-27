@@ -1,3 +1,33 @@
-<p>
-  purchased-ticket works!
-</p>
+<mat-card class="result">
+  <mat-card-content>
+    <h2 class="example-h2">Archived?</h2>
+
+    <section class="example-section">
+      <mat-slide-toggle
+        class="example-margin"
+        color="accent"
+        [checked]="toggle"
+        (change)="changeToggle()">
+        Toggle!
+      </mat-slide-toggle>
+    </section>
+  </mat-card-content>
+</mat-card>
+<div class="card-container">
+  <mat-card class="card" *ngFor="let item of dataSource">
+    <mat-card-header>
+      <mat-card-title>{{item.ticket.film.name}}</mat-card-title>
+      <mat-card-subtitle><span *ngFor="let genre of item.ticket.film.genres" class="genre-card">{{genre.name}}</span>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{item.ticket.film.url}}" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        {{item.ticket.film.description | slice:0:70}}...
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="archiveTicket(item.id)">Archive</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
