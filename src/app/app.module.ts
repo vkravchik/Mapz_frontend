@@ -16,6 +16,7 @@ import {TicketsComponent} from './dashboard/tickets/tickets.component';
 import {PaymentComponent} from './dashboard/dialogs/payment/payment.component';
 import {DatePipe} from '@angular/common';
 import {MatInputModule} from '@angular/material';
+import { AdminComponent } from './dashboard/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {MatInputModule} from '@angular/material';
     PurchasedTicketComponent,
     TicketsComponent,
     PaymentComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

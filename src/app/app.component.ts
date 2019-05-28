@@ -7,8 +7,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'MapzProject';
+  role: string;
+
+  constructor() {
+    this.role = JSON.parse(localStorage.getItem('currentUser')).role[0].name;
+  }
 
   items = [
-    {title: 'Мій Профіль', path: '/user'},
+    {title: 'Login', path: '/login'},
+    {title: 'Register', path: '/register'},
+    {title: 'Purchased-ticket', path: '/purchased-ticket'},
+    {title: 'Admin', path: '/admin'},
   ];
+
+  Logout() {
+    localStorage.clear();
+  }
 }

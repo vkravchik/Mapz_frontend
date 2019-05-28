@@ -12,7 +12,7 @@
           {{toggle ? 'Genre' : 'Name'}}
         </mat-slide-toggle>
         <mat-form-field class="example-full-width">
-          <input matInput #searchString placeholder="Search" type="search" (keyup.enter)="searchFunc(searchString.value)">
+          <input matInput #searchString placeholder="Search" type="search" (keyup)="search.makeSearch(searchString.value)" (keyup.enter)="searchFunc(searchString.value)">
         </mat-form-field>
         <button mat-icon-button class="mat-button-search" (click)="searchFunc(searchString.value)" >
           <mat-icon>search</mat-icon>

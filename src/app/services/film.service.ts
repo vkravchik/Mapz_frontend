@@ -91,7 +91,7 @@ export class FilmService {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     const params = new HttpParams().set('search', value);
-    return this.http.post(`${environment.apiUrl}/films/findAllByName`, headers, {params: params}).pipe(
+    return this.http.get(`${environment.apiUrl}/films/findAllByName`, {headers, params}).pipe(
       map(res => {
         return res;
       }),
@@ -106,7 +106,7 @@ export class FilmService {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     const params = new HttpParams().set('search', value);
-    return this.http.post(`${environment.apiUrl}/films/findAllByGenre`, headers, {params: params}).pipe(
+    return this.http.get(`${environment.apiUrl}/films/findAllByGenre`,  {headers, params}).pipe(
       map(res => {
         return res;
       }),

@@ -3,7 +3,8 @@ import {FilmService} from '../../services/film.service';
 import {Film} from '../../models/Film';
 import {MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
-import {Singleton} from '../../models/Singleton';
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {SearchService} from '../../services/search.service';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +17,19 @@ export class HomeComponent implements OnInit {
   toggle = false;
 
   constructor(private filmService: FilmService,
-              private router: Router) { }
+              private router: Router,
+              public search: SearchService) {
+  }
 
   ngOnInit() {
     this.getAll();
     this.role = JSON.parse(localStorage.getItem('currentUser')).role[0].name;
+    this.search.search$
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged()
+      )
+      .subscribe(term => this.searchFunc(term));
   }
 
   private getAll() {
@@ -30,7 +39,7 @@ export class HomeComponent implements OnInit {
   }
 
   buyTicket(id) {
-    this.router.navigateByUrl(`tickets/film/${id}`);
+    return this.router.navigateByUrl(`tickets/film/${id}`);
   }
 
   changeToggle() {
