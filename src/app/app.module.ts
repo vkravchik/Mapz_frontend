@@ -15,6 +15,7 @@ import {PurchasedTicketComponent} from './dashboard/purchased-ticket/purchased-t
 import {TicketsComponent} from './dashboard/tickets/tickets.component';
 import {PaymentComponent} from './dashboard/dialogs/payment/payment.component';
 import {DatePipe} from '@angular/common';
+import {MatInputModule} from '@angular/material';
 
 @NgModule({
   declarations: [

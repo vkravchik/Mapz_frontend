@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Film} from '../models/Film';
 import {Observable, of} from 'rxjs';
 import {environment} from '../../environments/environment';
@@ -77,6 +77,36 @@ export class FilmService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return this.http.post(`${environment.apiUrl}/films`, body, {headers: headers}).pipe(
+      map(res => {
+        return res;
+      }),
+      catchError(err => {
+        this.alert.error(err);
+        return of(null);
+      })
+    );
+  }
+
+  searchByName(value): Observable<Film[]> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    const params = new HttpParams().set('search', value);
+    return this.http.post(`${environment.apiUrl}/films/findAllByName`, headers, {params: params}).pipe(
+      map(res => {
+        return res;
+      }),
+      catchError(err => {
+        this.alert.error(err);
+        return of(null);
+      })
+    );
+  }
+
+  searchByGenre(value): Observable<Film[]> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    const params = new HttpParams().set('search', value);
+    return this.http.post(`${environment.apiUrl}/films/findAllByGenre`, headers, {params: params}).pipe(
       map(res => {
         return res;
       }),

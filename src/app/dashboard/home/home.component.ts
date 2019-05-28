@@ -13,6 +13,7 @@ import {Singleton} from '../../models/Singleton';
 export class HomeComponent implements OnInit {
   dataSource = new MatTableDataSource<Film>();
   role: string;
+  toggle = false;
 
   constructor(private filmService: FilmService,
               private router: Router) { }
@@ -30,5 +31,24 @@ export class HomeComponent implements OnInit {
 
   buyTicket(id) {
     this.router.navigateByUrl(`tickets/film/${id}`);
+  }
+
+  changeToggle() {
+    this.toggle = !this.toggle;
+  }
+
+  searchFunc(value) {
+    if (this.toggle) {
+      this.filmService.searchByGenre(value).subscribe(res => {
+        this.dataSource.data = res;
+      });
+    } else {
+      this.filmService.searchByName(value).subscribe(res => {
+        this.dataSource.data = res;
+      });
+    }
+    if (value === '') {
+      this.getAll();
+    }
   }
 }

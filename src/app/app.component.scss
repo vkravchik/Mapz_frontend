@@ -106,6 +106,21 @@ h1.example-app-name {
     width: 200px;
     height: auto;
   }
+
+  .example-section {
+    display: flex;
+    .example-full-width {
+      margin-left: 30px;
+      margin-top: -15px;
+    }
+    .mat-button-search {
+      margin-left: -2%;
+      margin-top: -10px;
+    }
+  }
+  .example-full-width {
+    width: 80%;
+  }
 }
 
 
