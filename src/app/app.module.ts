@@ -15,8 +15,11 @@ import {PurchasedTicketComponent} from './dashboard/purchased-ticket/purchased-t
 import {TicketsComponent} from './dashboard/tickets/tickets.component';
 import {PaymentComponent} from './dashboard/dialogs/payment/payment.component';
 import {DatePipe} from '@angular/common';
-import {MatInputModule} from '@angular/material';
-import { AdminComponent } from './dashboard/admin/admin.component';
+import {AdminComponent} from './dashboard/admin/admin.component';
+import {FilmDialogsComponent} from './dashboard/dialogs/film-dialogs/film-dialogs.component';
+import {MatChipsModule} from '@angular/material';
+import { AdminTicketsComponent } from './dashboard/admin/admin-tickets/admin-tickets.component';
+import { TicketDialogComponent } from './dashboard/dialogs/ticket-dialog/ticket-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { AdminComponent } from './dashboard/admin/admin.component';
     TicketsComponent,
     PaymentComponent,
     AdminComponent,
+    FilmDialogsComponent,
+    AdminTicketsComponent,
+    TicketDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +42,7 @@ import { AdminComponent } from './dashboard/admin/admin.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    MatChipsModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
@@ -44,7 +51,9 @@ import { AdminComponent } from './dashboard/admin/admin.component';
 
   ],
   entryComponents: [
-    PaymentComponent
+    PaymentComponent,
+    FilmDialogsComponent,
+    TicketDialogComponent,
   ],
   bootstrap: [AppComponent]
 })

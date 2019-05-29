@@ -6,4 +6,15 @@ export class Film {
   description: string;
   url: string;
   genres: Genre[];
+
+  constructor() {
+    this.id = null;
+    this.name = null;
+    this.description = null;
+    this.url = null;
+    this.genres = null;
+  }
+
+
 }
+

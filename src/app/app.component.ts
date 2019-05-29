@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {routing} from './app.routing';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,21 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'MapzProject';
-  role: string;
-
-  constructor() {
-    this.role = JSON.parse(localStorage.getItem('currentUser')).role[0].name;
-  }
+  private router: Router;
 
   items = [
     {title: 'Login', path: '/login'},
     {title: 'Register', path: '/register'},
     {title: 'Purchased-ticket', path: '/purchased-ticket'},
-    {title: 'Admin', path: '/admin'},
+    {title: 'Admin', path: '/admin', role: 'ROLE_ADMIN'},
+    {title: 'Tickets', path: '/admin/tickets', role: 'ROLE_ADMIN'},
   ];
 
   Logout() {
     localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

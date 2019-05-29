@@ -1,0 +1,81 @@
+<div class="modal">
+  <mat-grid-list cols="1" rowHeight="60px">
+    <form class="form" #formControl="ngForm" [formGroup]="form">
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput
+                 type="text"
+                 formControlName="name"
+                 placeholder="Name of Film">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <textarea matInput
+                    formControlName="description"
+                    placeholder="Description">
+          </textarea>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>URL</mat-label>
+          <input matInput
+                 type="text"
+                 formControlName="url"
+                 placeholder="url of img for film">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip
+              *ngFor="let fruit of fruits"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(fruit)">
+              {{fruit}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="New fruit..."
+              #fruitInput
+              [formControl]="fruitCtrl"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let fruit of allGenres" [value]="fruit.id">
+              {{fruit.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <button mat-button
+                color="primary"
+                [disabled]="!formControl.valid"
+                [mat-dialog-close]="1"
+                (click)="stop()">
+          Save
+        </button>
+        <button mat-button
+                color="warn"
+                (click)="onNoClick()"
+                tabindex="-1">
+          Cancel
+        </button>
+      </mat-grid-tile>
+
+    </form>
+  </mat-grid-list>
+</div>

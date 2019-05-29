@@ -1,0 +1,63 @@
+<div class="modal">
+  <mat-grid-list cols="1" rowHeight="60px">
+    <form class="form" #formControl="ngForm" [formGroup]="form">
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 formControlName="date"
+                 placeholder="Date">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 formControlName="time"
+                 placeholder="Time">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Films</mat-label>
+          <mat-select (selectionChange)="selectedFilms($event.value)" formControlName="film">
+            <mat-option *ngFor="let item of films" [value]="item.id">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Halls</mat-label>
+          <mat-select (selectionChange)="selectedHalls($event.value)" formControlName="hall">
+            <mat-option *ngFor="let item of halls" [value]="item.id">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <button mat-button
+                color="primary"
+                [disabled]="!formControl.valid"
+                [mat-dialog-close]="1"
+                (click)="stop()">
+          Save
+        </button>
+        <button mat-button
+                color="warn"
+                (click)="onNoClick()"
+                tabindex="-1">
+          Cancel
+        </button>
+      </mat-grid-tile>
+
+    </form>
+  </mat-grid-list>
+</div>

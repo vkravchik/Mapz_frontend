@@ -12,6 +12,7 @@ import {AlertService} from './alert.service';
 export class FilmService {
 
   private films: Film[];
+  dialogData: any;
 
   constructor(private http: HttpClient,
               private alert: AlertService) { }
@@ -42,10 +43,9 @@ export class FilmService {
 
   update(film: Film): Observable<Film> {
     const body = JSON.stringify(film);
-
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    return this.http.put(`${environment.apiUrl}/films`, body, {headers: headers}).pipe(
+    return this.http.put(`${environment.apiUrl}/films/${film.id}`, body, {headers: headers}).pipe(
       map(res => {
         return res;
       }),

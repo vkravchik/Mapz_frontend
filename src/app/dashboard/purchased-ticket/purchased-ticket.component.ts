@@ -26,11 +26,12 @@ export class PurchasedTicketComponent implements OnInit {
         this.dataSource = res;
         console.log(res);
       });
+    } else {
+      this.purchasedService.getAllByUserid(localStorage.getItem('id')).subscribe(res => {
+        this.dataSource = res;
+        console.log(res);
+      });
     }
-    this.purchasedService.getAllByUserid(localStorage.getItem('id')).subscribe(res => {
-      this.dataSource = res;
-      console.log(res);
-    });
   }
 
   archiveTicket(id: number) {

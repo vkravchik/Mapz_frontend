@@ -7,6 +7,7 @@ import {PurchasedTicketComponent} from './dashboard/purchased-ticket/purchased-t
 import {TicketsComponent} from './dashboard/tickets/tickets.component';
 import {AdminComponent} from './dashboard/admin/admin.component';
 import {RoleGuard} from './guards/role.guard';
+import {AdminTicketsComponent} from './dashboard/admin/admin-tickets/admin-tickets.component';
 
 
 const appRoutes: Routes = [
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
   { path: 'purchased-ticket', component: PurchasedTicketComponent, canActivate: [AuthGuard]},
   { path: 'tickets/film/:id', component: TicketsComponent, canActivate: [AuthGuard]},
   { path: 'admin', component: AdminComponent, canActivate: [RoleGuard]},
+  { path: 'admin/tickets', component: AdminTicketsComponent, canActivate: [RoleGuard]},
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
