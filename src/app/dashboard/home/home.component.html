@@ -1,7 +1,7 @@
-<div>
+<div fxLayout="row wrap">
   <mat-card class="result">
     <mat-card-content>
-      <h2 class="example-h2">Card of search</h2>
+      <h2 class="example-h2"></h2>
 
       <section class="example-section">
         <mat-slide-toggle
@@ -9,10 +9,10 @@
           color="accent"
           [checked]="toggle"
           (change)="changeToggle()">
-          {{toggle ? 'Genre' : 'Name'}}
+          {{toggle ? 'Жанр' : 'І’мя'}}
         </mat-slide-toggle>
         <mat-form-field class="example-full-width">
-          <input matInput #searchString placeholder="Search" type="search" (keyup)="search.makeSearch(searchString.value)" (keyup.enter)="searchFunc(searchString.value)">
+          <input matInput #searchString [placeholder]="toggle ? 'Введіть жанр фільму' : 'Введіть і’мя фільму'" type="search" (keyup)="search.makeSearch(searchString.value)" (keyup.enter)="searchFunc(searchString.value)">
         </mat-form-field>
         <button mat-icon-button class="mat-button-search" (click)="searchFunc(searchString.value)" >
           <mat-icon>search</mat-icon>
@@ -26,7 +26,7 @@
   <mat-card class="card" *ngFor="let item of dataSource.data">
     <mat-card-header>
       <mat-card-title>{{item.name}}</mat-card-title>
-      <mat-card-subtitle><span *ngFor="let genre of item.genres" class="genre-card">{{genre.name}}</span>
+      <mat-card-subtitle><span *ngFor="let genre of item.genres | orderBy:'name': false" class="genre-card">{{genre.name}}</span>
       </mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="{{item.url}}" alt="Photo of a Shiba Inu">
@@ -35,12 +35,8 @@
         {{item.description | slice:0:70}}...
       </p>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="buyTicket(item.id)">Buy</button>
-      <div class="admin-action" *ngIf="role === 'ROLE_ADMIN'">
-        <button mat-flat-button color="warn">DELETE</button>
-        <button mat-raised-button>EDIT</button>
-      </div>
+    <mat-card-actions class="card-actions" align="end">
+      <button mat-raised-button color="primary" (click)="buyTicket(item.id)">Замовити</button>
     </mat-card-actions>
   </mat-card>
 </div>

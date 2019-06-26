@@ -81,6 +81,7 @@ export class FilmDialogsComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.form.controls['genres'].push(this.buildGenres(event.option.value));
+
     console.log(this.form.value);
     this.fruits.push(event.option.viewValue);
     this.fruitInput.nativeElement.value = '';

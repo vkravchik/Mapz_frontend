@@ -11,11 +11,10 @@ export class AppComponent {
   private router: Router;
 
   items = [
-    {title: 'Login', path: '/login'},
-    {title: 'Register', path: '/register'},
-    {title: 'Purchased-ticket', path: '/purchased-ticket'},
-    {title: 'Admin', path: '/admin', role: 'ROLE_ADMIN'},
-    {title: 'Tickets', path: '/admin/tickets', role: 'ROLE_ADMIN'},
+    {title: 'Логін', path: '/login'},
+    {title: 'Куплені білети', path: '/purchased-ticket'},
+    {title: 'Фільми', path: '/admin', role: 'ROLE_ADMIN'},
+    {title: 'Білети', path: '/admin/tickets', role: 'ROLE_ADMIN'},
   ];
 
   Logout() {

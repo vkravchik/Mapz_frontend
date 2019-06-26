@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Pipe} from '@angular/core';
 import {FilmService} from '../../services/film.service';
 import {Film} from '../../models/Film';
 import {MatTableDataSource} from '@angular/material';

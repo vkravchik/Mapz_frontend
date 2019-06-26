@@ -45,6 +45,12 @@ h1.example-app-name {
   right: 0;
 }
 
+a {
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+}
+
 @media(max-width: 599px) {
   #container {
     top: 56px !important;
@@ -69,7 +75,7 @@ h1.example-app-name {
 
 //  CARDS
   .card {
-    max-width: 400px;
+    max-width: 350px;
     margin: 10px;
   }
   .header-image {
@@ -78,12 +84,22 @@ h1.example-app-name {
   }
   .card-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin:20px;
   }
   .genre-card:not(:last-child):after {
     content: ", ";
   }
-  .admin-action {
-    margin-top: 5px;
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  mat-card-content {
+    display: flex;
+    flex: 1;
   }
 //  TICKET LIST
   .example-radio-group {

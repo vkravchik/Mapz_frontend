@@ -36,10 +36,10 @@ export class PurchasedTicketComponent implements OnInit {
 
   archiveTicket(id: number) {
     console.log(id);
-    this.purchasedService.setStatusTrue(id).subscribe(res => {
-      console.log(res);
-    });
-    this.getTickets();
+    this.purchasedService.setStatusTrue(id).subscribe();
+    let position = this.dataSource.findIndex(x => x === id);
+    console.log(position);
+    this.dataSource.splice(position, 1);
   }
 
   changeToggle() {

@@ -20,6 +20,7 @@ import {FilmDialogsComponent} from './dashboard/dialogs/film-dialogs/film-dialog
 import {MatChipsModule} from '@angular/material';
 import { AdminTicketsComponent } from './dashboard/admin/admin-tickets/admin-tickets.component';
 import { TicketDialogComponent } from './dashboard/dialogs/ticket-dialog/ticket-dialog.component';
+import {OrderByPipe} from './helpers/OrderByPipe';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TicketDialogComponent } from './dashboard/dialogs/ticket-dialog/ticket-
     FilmDialogsComponent,
     AdminTicketsComponent,
     TicketDialogComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
