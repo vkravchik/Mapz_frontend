@@ -21,6 +21,8 @@ import {MatChipsModule} from '@angular/material';
 import { AdminTicketsComponent } from './dashboard/admin/admin-tickets/admin-tickets.component';
 import { TicketDialogComponent } from './dashboard/dialogs/ticket-dialog/ticket-dialog.component';
 import {OrderByPipe} from './helpers/OrderByPipe';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,13 @@ import {OrderByPipe} from './helpers/OrderByPipe';
     HttpClientModule,
     FormsModule,
     MatChipsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      preventDuplicates: false,
+      maxOpened: 1,
+      positionClass: 'toast-bottom-right',
+      progressBar: true
+    })
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

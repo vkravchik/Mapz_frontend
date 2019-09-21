@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
-import {routing} from './app.routing';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  private router: Router;
+export class AppComponent implements OnInit {
+  // currentUser = this.authService.currentUserSubject.value;
 
   items = [
     {title: 'Логін', path: '/login'},
@@ -17,8 +17,17 @@ export class AppComponent {
     {title: 'Білети', path: '/admin/tickets', role: 'ROLE_ADMIN'},
   ];
 
+  constructor(private router: Router,
+              private authService: AuthService) {
+  }
+
   Logout() {
-    localStorage.clear();
-    this.router.navigate(['/login']);
+    // this.authService.currentUserSubject.next(null);
+    this.authService.logout();
+    // localStorage.clear();
+    this.router.navigateByUrl('/login');
+  }
+
+  ngOnInit(): void {
   }
 }

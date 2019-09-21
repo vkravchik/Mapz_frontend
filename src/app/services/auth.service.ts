@@ -6,13 +6,14 @@ import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 import {Singleton} from '../models/Singleton';
 import * as jwt_decode from 'jwt-decode';
+import {JwtHelperService} from '@auth0/angular-jwt';
 import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<User>;
+  currentUserSubject = new BehaviorSubject<any>(this.decodeToken(localStorage.getItem('token')));
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient,
@@ -47,9 +48,14 @@ export class AuthService {
       }));
   }
 
-  logout() {
+  decodeToken(token) {
+    const helper = new JwtHelperService();
+    return helper.decodeToken(token);
+  }
+
+  async logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    await localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
 }

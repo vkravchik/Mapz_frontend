@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {first} from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {AlertService} from '../../services/alert.service';
 import {UserService} from '../../services/user.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthService,
     private userService: UserService,
+    private toastr: ToastrService,
     private alertService: AlertService
   ) {
     if (this.authenticationService.currentUserValue) {
@@ -31,7 +32,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', Validators.required]
     });
   }
 
@@ -39,23 +40,16 @@ export class RegisterComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.registerForm.invalid) {
-      return;
-    }
 
     this.loading = true;
     this.userService.register(this.registerForm.value)
-      .pipe(first())
       .subscribe(
-        data => {
-          this.alertService.success('Registration successful', true);
+        (data: any) => {
+          this.toastr.success(data.username, 'Registration Success');
           this.router.navigate(['/login']);
         },
         error => {
-          this.alertService.error(error);
+          this.toastr.error(error, 'Registration Error');
           this.loading = false;
         });
   }

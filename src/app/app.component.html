@@ -4,6 +4,35 @@
       <mat-icon class="icon" aria-label="Side nav toggle icon">{{drawer.opened ? 'close' : 'menu'}}</mat-icon>
     </button>
     <span routerLink=""><a routerLink="/">Кінотеатр</a></span>
+    <span class="menu-spacer"></span>
+    <div *ngIf="true">
+      <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+      <button mat-button routerLink="/">
+        <mat-icon>home</mat-icon>
+        <span class="menu-icon">Home</span>
+      </button>
+      <button mat-button routerLink="/purchased-ticket">
+        <mat-icon>people</mat-icon>
+        <span class="menu-icon">Tickets</span>
+      </button>
+      <button mat-button [matMenuTriggerFor]="personal">
+        <mat-icon>person</mat-icon>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #personal="matMenu">
+        <div class="person-data" *ngIf="currentUser">
+          <p><b>Welcome</b></p>
+        </div>
+        <!--<div *ngIf="currentUser.role[0].name === 'ROLE_ADMIN'">-->
+          <!--<mat-divider></mat-divider>-->
+          <!--ADMIN-->
+        <!--</div>-->
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="Logout()">
+          Sign out
+        </button>
+      </mat-menu>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 
