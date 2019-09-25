@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {FilmDialogsComponent} from '../dialogs/film-dialogs/film-dialogs.component';
 import {AlertService} from '../../services/alert.service';
 import {Film} from '../../models/Film';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin',
@@ -19,6 +20,7 @@ export class AdminComponent implements OnInit {
   dataSource = new MatTableDataSource<any>();
 
   constructor(private _film: FilmService,
+              private toastr: ToastrService,
               private alert: AlertService,
               private router: Router,
               private dialog: MatDialog) {
@@ -33,7 +35,7 @@ export class AdminComponent implements OnInit {
   getAll() {
     this._film.getAll().subscribe((res: any) => {
       this.dataSource.data = res;
-      console.log(res);
+      console.log(res.genre['name']);
     });
   }
 
@@ -44,9 +46,10 @@ export class AdminComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res => {
       if (res === 1) {
+        console.log(this._film.dialogData);
         this._film.add(this._film.dialogData).subscribe(
-          res => {
-            this.dataSource.data.push(res);
+          (ress: any) => {
+            this.dataSource.data.push(ress);
             this.dataSource = new MatTableDataSource<any>(this.dataSource.data);
           },
           (error) => {
@@ -56,31 +59,32 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  startEdit(id) {
-    const dialogRef = this.dialog.open(FilmDialogsComponent, {
-      data: {id: id, status: 0}
-    });
-
-    dialogRef.afterClosed().subscribe(res => {
-      if (res === 1) {
-        this._film.update(this._film.dialogData).subscribe((res: any) => {
-            const foundIndex = this.dataSource.data.findIndex(x => x.id === res.id);
-            this.dataSource.data[foundIndex] = res;
-
-            this.dataSource = new MatTableDataSource<any>(this.dataSource.data);
-
-          },
-          (error) => {
-            this.alert.error(error);
-          });
-      }
-    });
-  }
+  // startEdit(id) {
+  //   const dialogRef = this.dialog.open(FilmDialogsComponent, {
+  //     data: {id: id, status: 0}
+  //   });
+  //
+  //   dialogRef.afterClosed().subscribe(res => {
+  //     if (res === 1) {
+  //       this._film.update(this._film.dialogData).subscribe((res: any) => {
+  //           const foundIndex = this.dataSource.data.findIndex(x => x.id === res.id);
+  //           this.dataSource.data[foundIndex] = res;
+  //
+  //           this.dataSource = new MatTableDataSource<any>(this.dataSource.data);
+  //
+  //         },
+  //         (error) => {
+  //           this.alert.error(error);
+  //         });
+  //     }
+  //   });
+  // }
 
   deleteItem(id) {
     this._film.delete(id).subscribe(
       (res) => {
         this.dataSource.data = this.dataSource.data.filter(data => data.id !== id);
+        this.toastr.success('Delete Film Success');
       },
       (error) => {
         this.alert.error(error);

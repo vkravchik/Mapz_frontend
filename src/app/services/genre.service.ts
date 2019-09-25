@@ -10,8 +10,12 @@ import {Genre} from '../models/Genre';
   providedIn: 'root'
 })
 export class GenreService {
+
   constructor(private http: HttpClient,
-              private alert: AlertService) { }
+              private alert: AlertService) {
+
+  }
+
 
   getAll(): Observable<Genre[]> {
     return this.http.get(`${environment.apiUrl}/genres`).pipe(

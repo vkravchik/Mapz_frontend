@@ -15,7 +15,7 @@
   <!-- Position Column -->
   <ng-container matColumnDef="genres">
     <th mat-header-cell *matHeaderCellDef> Genres </th>
-    <td mat-cell *matCellDef="let element"><a *ngFor="let genre of element.genres">{{genre.name}} </a></td>
+    <td mat-cell *matCellDef="let element"> {{element.genre.name}} </td>
   </ng-container>
 
   <!-- actions -->

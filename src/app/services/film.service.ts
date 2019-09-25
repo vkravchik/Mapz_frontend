@@ -71,7 +71,7 @@ export class FilmService {
     );
   }
 
-  add(film: Film): Observable<Film> {
+  add(film: Film): Observable<any> {
     const body = JSON.stringify(film);
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

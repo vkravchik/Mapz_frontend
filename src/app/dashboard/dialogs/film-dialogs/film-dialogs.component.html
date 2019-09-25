@@ -33,30 +33,12 @@
 
       <mat-grid-tile>
         <mat-form-field class="example-chip-list">
-          <mat-chip-list #chipList aria-label="Fruit selection">
-            <mat-chip
-              *ngFor="let fruit of fruits"
-              [selectable]="selectable"
-              [removable]="removable"
-              (removed)="remove(fruit)">
-              {{fruit}}
-              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-            </mat-chip>
-            <input
-              placeholder="New fruit..."
-              #fruitInput
-              [formControl]="fruitCtrl"
-              [matAutocomplete]="auto"
-              [matChipInputFor]="chipList"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              [matChipInputAddOnBlur]="addOnBlur"
-              (matChipInputTokenEnd)="add($event)">
-          </mat-chip-list>
-          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-            <mat-option *ngFor="let fruit of allGenres" [value]="fruit.id">
-              {{fruit.name}}
-            </mat-option>
-          </mat-autocomplete>
+          <mat-form-field>
+            <mat-label>Genre</mat-label>
+            <mat-select formControlName="genre" [(value)]="genre" >
+              <mat-option *ngFor="let item of allGenres" [value]="item">{{item.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </mat-form-field>
       </mat-grid-tile>
 
