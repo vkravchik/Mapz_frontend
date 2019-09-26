@@ -4,7 +4,6 @@ import {FilmService} from '../../services/film.service';
 import {Router} from '@angular/router';
 import {FilmDialogsComponent} from '../dialogs/film-dialogs/film-dialogs.component';
 import {AlertService} from '../../services/alert.service';
-import {Film} from '../../models/Film';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({
@@ -35,7 +34,6 @@ export class AdminComponent implements OnInit {
   getAll() {
     this._film.getAll().subscribe((res: any) => {
       this.dataSource.data = res;
-      console.log(res.genre['name']);
     });
   }
 
@@ -46,7 +44,6 @@ export class AdminComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res => {
       if (res === 1) {
-        console.log(this._film.dialogData);
         this._film.add(this._film.dialogData).subscribe(
           (ress: any) => {
             this.dataSource.data.push(ress);
@@ -59,26 +56,26 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  // startEdit(id) {
-  //   const dialogRef = this.dialog.open(FilmDialogsComponent, {
-  //     data: {id: id, status: 0}
-  //   });
-  //
-  //   dialogRef.afterClosed().subscribe(res => {
-  //     if (res === 1) {
-  //       this._film.update(this._film.dialogData).subscribe((res: any) => {
-  //           const foundIndex = this.dataSource.data.findIndex(x => x.id === res.id);
-  //           this.dataSource.data[foundIndex] = res;
-  //
-  //           this.dataSource = new MatTableDataSource<any>(this.dataSource.data);
-  //
-  //         },
-  //         (error) => {
-  //           this.alert.error(error);
-  //         });
-  //     }
-  //   });
-  // }
+  startEdit(film) {
+    const dialogRef = this.dialog.open(FilmDialogsComponent, {
+      data: {film: film, status: 0}
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (res === 1) {
+        this._film.update(this._film.dialogData).subscribe((res: any) => {
+            const foundIndex = this.dataSource.data.findIndex(x => x.id === res.id);
+            this.dataSource.data[foundIndex] = res;
+
+            this.dataSource = new MatTableDataSource<any>(this.dataSource.data);
+
+          },
+          (error) => {
+            this.alert.error(error);
+          });
+      }
+    });
+  }
 
   deleteItem(id) {
     this._film.delete(id).subscribe(

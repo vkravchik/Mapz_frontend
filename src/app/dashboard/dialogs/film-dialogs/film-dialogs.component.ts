@@ -1,8 +1,6 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
-import {MAT_DIALOG_DATA, MatAutocomplete, MatChipInputEvent, MatDialogRef} from '@angular/material';
-import {Observable} from 'rxjs';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MAT_DIALOG_DATA, MatAutocomplete, MatDialogRef} from '@angular/material';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {Film} from '../../../models/Film';
 import {FilmService} from '../../../services/film.service';
 import {GenreService} from '../../../services/genre.service';
@@ -32,6 +30,20 @@ export class FilmDialogsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.data.film) {
+      this.form = this.formBuilder.group({
+        name: this.data.film.name || '',
+        description: this.data.film.description,
+        url: this.data.film.url,
+        genre: '',
+        del: false,
+      });
+    } else {
+      this.initForm();
+    }
+  }
+
+  initForm() {
     this.form = this.formBuilder.group({
       name: '',
       description: '',
@@ -43,8 +55,7 @@ export class FilmDialogsComponent implements OnInit {
 
   stop(): void {
     if (!this.data.status) {
-      this.form.value.id = this.data.id;
-      console.log(this.form.value.id);
+      this.form.value.id = this.data.film.id;
     }
     this._film.dialogData = this.form.value;
   }
@@ -56,9 +67,7 @@ export class FilmDialogsComponent implements OnInit {
   private getSingle() {
     this._film.getSingle(this.data.id).subscribe((res: Film) => {
       this.currentRow = res;
-      this.form.patchValue({
-
-      });
+      this.form.patchValue({});
     });
   }
 

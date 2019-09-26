@@ -4,11 +4,10 @@
 
       <mat-grid-tile>
         <mat-form-field>
-          <mat-label>Name</mat-label>
           <input matInput
                  type="text"
                  formControlName="name"
-                 placeholder="Name of Film">
+                 placeholder="Назва Фільму">
         </mat-form-field>
       </mat-grid-tile>
 
@@ -16,25 +15,24 @@
         <mat-form-field>
           <textarea matInput
                     formControlName="description"
-                    placeholder="Description">
+                    placeholder="Опис фільму">
           </textarea>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile>
         <mat-form-field>
-          <mat-label>URL</mat-label>
           <input matInput
                  type="text"
                  formControlName="url"
-                 placeholder="url of img for film">
+                 placeholder="Ссилка на постер">
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile>
         <mat-form-field class="example-chip-list">
           <mat-form-field>
-            <mat-label>Genre</mat-label>
+            <mat-label>Жанр</mat-label>
             <mat-select formControlName="genre" [(value)]="genre" >
               <mat-option *ngFor="let item of allGenres" [value]="item">{{item.name}}</mat-option>
             </mat-select>

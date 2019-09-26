@@ -17,17 +17,18 @@
   <mat-card class="card" *ngFor="let item of dataSource">
     <mat-card-header>
       <mat-card-title>{{item.ticket.film.name}}</mat-card-title>
-      <mat-card-subtitle><span *ngFor="let genre of item.ticket.film.genres" class="genre-card">{{genre.name}}</span>
+      <mat-card-subtitle><span class="genre-card">{{item.ticket.film.genre.name}}</span>
       </mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="{{item.ticket.film.url}}" alt="Photo of a Shiba Inu">
     <mat-card-content>
       <p>
-        {{item.ticket.film.description | slice:0:70}}...
+        Показ фільму відбудеться <i>{{item.ticket.date}}</i> о <i>{{item.ticket.time}}</i><br>
+        в залі <i>№{{item.ticket.hall.name}}</i>
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="archiveTicket(item.id)">Archive</button>
+      <button mat-raised-button *ngIf="!toggle" color="primary" (click)="archiveTicket(item.id)">Archive</button>
     </mat-card-actions>
   </mat-card>
 </div>
