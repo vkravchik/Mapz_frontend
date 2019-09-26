@@ -7,7 +7,7 @@
           <input matInput
                  type="text"
                  formControlName="date"
-                 placeholder="Date">
+                 placeholder="Дата">
         </mat-form-field>
       </mat-grid-tile>
 
@@ -16,13 +16,13 @@
           <input matInput
                  type="text"
                  formControlName="time"
-                 placeholder="Time">
+                 placeholder="Час">
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile>
         <mat-form-field>
-          <mat-label>Films</mat-label>
+          <mat-label>Фільм</mat-label>
           <mat-select (selectionChange)="selectedFilms($event.value)" formControlName="film">
             <mat-option *ngFor="let item of films" [value]="item.id">
               {{item.name}}
@@ -33,7 +33,7 @@
 
       <mat-grid-tile>
         <mat-form-field>
-          <mat-label>Halls</mat-label>
+          <mat-label>Зала</mat-label>
           <mat-select (selectionChange)="selectedHalls($event.value)" formControlName="hall">
             <mat-option *ngFor="let item of halls" [value]="item.id">
               {{item.name}}
@@ -48,13 +48,13 @@
                 [disabled]="!formControl.valid"
                 [mat-dialog-close]="1"
                 (click)="stop()">
-          Save
+          Зберегти
         </button>
         <button mat-button
                 color="warn"
                 (click)="onNoClick()"
                 tabindex="-1">
-          Cancel
+          Відміна
         </button>
       </mat-grid-tile>
 

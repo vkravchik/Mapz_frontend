@@ -9,11 +9,11 @@
       <!-- The following menu items will be hidden on both SM and XS screen sizes -->
       <button mat-button routerLink="/">
         <mat-icon>home</mat-icon>
-        <span class="menu-icon">Home</span>
+        <span class="menu-icon">Головна</span>
       </button>
       <button mat-button routerLink="/purchased-ticket">
         <mat-icon>people</mat-icon>
-        <span class="menu-icon">Tickets</span>
+        <span class="menu-icon">Білети</span>
       </button>
       <button mat-button [matMenuTriggerFor]="personal">
         <mat-icon>person</mat-icon>
@@ -21,16 +21,17 @@
       </button>
       <mat-menu #personal="matMenu">
         <div class="person-data" *ngIf="currentUser">
-          <p><b>Welcome</b></p>
+          <p><b>Welcome {{currentUser.username}}</b></p>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="Logout()">
+            Вийти
+          </button>
         </div>
-        <!--<div *ngIf="currentUser.role[0].name === 'ROLE_ADMIN'">-->
-          <!--<mat-divider></mat-divider>-->
-          <!--ADMIN-->
-        <!--</div>-->
-        <mat-divider></mat-divider>
-        <button mat-menu-item (click)="Logout()">
-          Sign out
-        </button>
+        <div *ngIf="!currentUser">
+          <button mat-menu-item (click)="Login()">
+            Ввійти
+          </button>
+        </div>
       </mat-menu>
     </div>
   </mat-toolbar-row>

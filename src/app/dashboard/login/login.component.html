@@ -1,19 +1,19 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-container">
-  <h2>Login</h2>
+  <h2>Авторизація</h2>
   <mat-form-field>
     <input matInput type="text" formControlName="username" class="form-control"
-           placeholder="Enter username">
+           placeholder="Ім’я користувача">
     <mat-error *ngIf="submitted && f.username.errors">Error in username</mat-error>
   </mat-form-field>
   <br>
   <mat-form-field>
     <input matInput type="password" formControlName="password" class="form-control"
-           placeholder="Enter your password">
+           placeholder="Пароль">
     <mat-error *ngIf="submitted && f.password.errors">Password is required</mat-error>
   </mat-form-field>
   <div class="form-group-button">
-    <button mat-raised-button [disabled]="loading">Login</button>
-    <a mat-button routerLink="/register">Register</a>
+    <button mat-raised-button [disabled]="loading">Ввійти</button>
+    <a mat-button routerLink="/register">Реєстрація</a>
   </div>
   <mat-spinner *ngIf="loading"></mat-spinner>
 </form>

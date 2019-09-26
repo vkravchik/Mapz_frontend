@@ -1,16 +1,16 @@
 <form [formGroup]="registerForm" class="form-container">
-  <h2>Register</h2>
+  <h2>Реєстрація</h2>
   <mat-form-field>
-    <input matInput type="text" formControlName="username" class="form-control" placeholder="Enter username">
+    <input matInput type="text" formControlName="username" class="form-control" placeholder="Ім’я користувача">
     <mat-error *ngIf="submitted && f.username.errors">Error in username</mat-error>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput type="password" formControlName="password" class="form-control" placeholder="Enter your password">
+    <input matInput type="password" formControlName="password" class="form-control" placeholder="Пароль">
   </mat-form-field>
   <div class="form-group-button">
-    <button mat-raised-button [disabled]="loading" class="btn btn-primary" (click)="onSubmit()">Register</button>
-    <a mat-button routerLink="/login">Chancel</a>
+    <button mat-raised-button [disabled]="loading" class="btn btn-primary" (click)="onSubmit()">Реєстрація</button>
+    <a mat-button routerLink="/login">Відміна</a>
   </div>
   <mat-spinner *ngIf="loading"></mat-spinner>
 </form>

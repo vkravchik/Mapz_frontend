@@ -24,12 +24,10 @@ export class PurchasedTicketComponent implements OnInit {
     if (this.toggle) {
       this.purchasedService.getAllByUseridArchived(localStorage.getItem('id')).subscribe(res => {
         this.dataSource = res;
-        console.log(res);
       });
     } else {
       this.purchasedService.getAllByUserid(localStorage.getItem('id')).subscribe(res => {
         this.dataSource = res;
-        console.log(res);
       });
     }
   }

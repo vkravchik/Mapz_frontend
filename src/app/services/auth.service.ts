@@ -13,12 +13,11 @@ import {UserService} from './user.service';
   providedIn: 'root'
 })
 export class AuthService {
-  currentUserSubject = new BehaviorSubject<any>(this.decodeToken(localStorage.getItem('token')));
+  currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('username')));
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient,
               private userService: UserService) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -29,21 +28,18 @@ export class AuthService {
   login(username: string, password: string) {
     return this.http.post<any>(`${environment.apiUrl}/auth/signin`, {username, password})
       .pipe(map(user => {
-        // login successful if there's a jwt token in the response
         if (user && user.accessToken) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
           // SINGLETON
-          Singleton.getInstance(user.accessToken);
+          // Singleton.getInstance(user.accessToken);
           // USER ID
           const token = localStorage.getItem('token');
           this.userService.getByUsername(jwt_decode(token).username).subscribe((res: User) => {
             localStorage.setItem('id', res.id.toString());
+            localStorage.setItem('username', JSON.stringify(res));
+            this.currentUserSubject.next(res);
           });
-          //
-          this.currentUserSubject.next(user);
         }
-
         return user;
       }));
   }
