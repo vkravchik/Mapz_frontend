@@ -9,6 +9,7 @@ import {User} from '../../models/User';
 import {MatDialog} from '@angular/material';
 import {PaymentComponent} from '../dialogs/payment/payment.component';
 import {filter, mergeMap} from 'rxjs/operators';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-tickets',
@@ -27,6 +28,7 @@ export class TicketsComponent implements OnInit {
               private filmService: FilmService,
               private userService: UserService,
               private purchasedService: PurchasedService,
+              private toastr: ToastrService,
               private dialog: MatDialog) {
   }
 
@@ -49,7 +51,7 @@ export class TicketsComponent implements OnInit {
   }
 
   getUserId() {
-    const token = localStorage.getItem('token');
+    const token = JSON.parse(localStorage.getItem('currentUser')).accessToken;
     const username = jwt_decode(token).username;
     this.userService.getByUsername(username).subscribe((res: User) => {
       this.userId = res.id;
@@ -72,8 +74,9 @@ export class TicketsComponent implements OnInit {
     const dialogRef = this.dialog.open(PaymentComponent, {disableClose: true});
     dialogRef.afterClosed().pipe(
       filter((result) => result === 1),
-      mergeMap(() => this.purchasedService.add(purchased))).subscribe(res => {
-      console.log(res);
-    });
+      mergeMap(() => this.purchasedService.add(purchased)))
+      .subscribe(res => {
+      this.toastr.success('Білет куплено');
+    }, err => this.toastr.error(err));
   }
 }

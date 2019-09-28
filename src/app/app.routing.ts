@@ -16,8 +16,8 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'purchased-ticket', component: PurchasedTicketComponent, canActivate: [AuthGuard]},
   { path: 'tickets/film/:id', component: TicketsComponent, canActivate: [AuthGuard]},
-  { path: 'admin', component: AdminComponent, canActivate: [RoleGuard]},
-  { path: 'admin/tickets', component: AdminTicketsComponent, canActivate: [RoleGuard]},
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard, RoleGuard]},
+  { path: 'admin/tickets', component: AdminTicketsComponent, canActivate: [AuthGuard, RoleGuard]},
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

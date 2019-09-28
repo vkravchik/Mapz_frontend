@@ -39,7 +39,7 @@ export class TicketService {
         return res;
       }),
       catchError(err => {
-        this.alert.error(err);
+        console.log(err);
         return of(null);
       })
     );

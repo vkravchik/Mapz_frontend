@@ -30,10 +30,8 @@ export class AuthService {
       .pipe(map(user => {
         if (user && user.accessToken) {
           localStorage.setItem('currentUser', JSON.stringify(user));
-          // SINGLETON
-          // Singleton.getInstance(user.accessToken);
-          // USER ID
-          const token = localStorage.getItem('token');
+
+          const token = user.accessToken;
           this.userService.getByUsername(jwt_decode(token).username).subscribe((res: User) => {
             localStorage.setItem('id', res.id.toString());
             localStorage.setItem('username', JSON.stringify(res));
@@ -51,7 +49,7 @@ export class AuthService {
 
   async logout() {
     // remove user from local storage to log user out
-    await localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    await localStorage.clear();
   }
 }
