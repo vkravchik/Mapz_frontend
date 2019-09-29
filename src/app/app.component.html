@@ -23,6 +23,30 @@
         <div class="person-data" *ngIf="currentUser">
           <p><b>Welcome {{currentUser.username}}</b></p>
           <mat-divider></mat-divider>
+
+          <div *ngIf="currentUserRole === 'ROLE_ADMIN'">
+            <button mat-button routerLink="/admin">
+              <mat-icon>local_movies</mat-icon>
+              <span class="menu-icon">Фільми</span>
+            </button>
+            <br>
+            <button mat-button routerLink="/admin/tickets">
+              <mat-icon>event</mat-icon>
+              <span class="menu-icon">Білети</span>
+            </button>
+            <br>
+            <button mat-button routerLink="/admin/genre">
+              <mat-icon>storage</mat-icon>
+              <span class="menu-icon">Жанри</span>
+            </button>
+            <br>
+            <button mat-button routerLink="/admin/hall">
+              <mat-icon>dashboard</mat-icon>
+              <span class="menu-icon">Зали</span>
+            </button>
+          </div>
+
+          <mat-divider></mat-divider>
           <button mat-menu-item (click)="Logout()">
             Вийти
           </button>

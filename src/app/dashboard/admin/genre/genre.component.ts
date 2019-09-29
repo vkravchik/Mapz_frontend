@@ -33,7 +33,9 @@ export class GenreComponent implements OnInit {
 
   addNew() {
     const dialogRef = this.dialog.open(GenreHallComponent, {
-      data: {namePlaceholder: 'Жанр'}
+      data: {
+        namePlaceholder: 'Жанр',
+      }
     });
 
     dialogRef.afterClosed().subscribe(res => {

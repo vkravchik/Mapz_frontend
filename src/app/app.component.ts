@@ -10,6 +10,7 @@ import {AuthService} from './services/auth.service';
 export class AppComponent implements OnInit {
   // currentUser = this.authService.currentUserSubject.value;
   currentUser;
+  currentUserRole = 'ROLE_USER';
 
   items = [
     {title: 'Логін', path: '/login'},
@@ -32,6 +33,9 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authService.currentUserSubject.subscribe(res => {
       this.currentUser = res;
+      if (res) {
+        this.currentUserRole = res.roles[0].name;
+      }
     });
   }
 

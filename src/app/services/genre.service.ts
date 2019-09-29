@@ -39,7 +39,7 @@ export class GenreService {
 
     return this.http.delete(`${environment.apiUrl}/genres/${id}`, {headers: headers}).pipe(
       map(res => {
-        return res;
+        return of(200);
       }),
       catchError(err => {
         this.toastr.error(err);
