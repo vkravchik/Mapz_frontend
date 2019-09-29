@@ -23,6 +23,9 @@ import { TicketDialogComponent } from './dashboard/dialogs/ticket-dialog/ticket-
 import {OrderByPipe} from './helpers/OrderByPipe';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
+import { GenreComponent } from './dashboard/admin/genre/genre.component';
+import { HallComponent } from './dashboard/admin/hall/hall.component';
+import { GenreHallComponent } from './dashboard/dialogs/genre-hall/genre-hall.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import {ToastrModule} from 'ngx-toastr';
     FilmDialogsComponent,
     AdminTicketsComponent,
     TicketDialogComponent,
-    OrderByPipe
+    OrderByPipe,
+    GenreComponent,
+    HallComponent,
+    GenreHallComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +71,7 @@ import {ToastrModule} from 'ngx-toastr';
     PaymentComponent,
     FilmDialogsComponent,
     TicketDialogComponent,
+    GenreHallComponent,
   ],
   bootstrap: [AppComponent]
 })

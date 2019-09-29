@@ -1,0 +1,32 @@
+<div class="modal">
+  <mat-grid-list cols="1" rowHeight="60px">
+    <form class="form" #formControl="ngForm" [formGroup]="form">
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 formControlName="name"
+                 [placeholder]="namePlaceholder">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <button mat-button
+                color="primary"
+                [disabled]="!formControl.valid"
+                [mat-dialog-close]="1"
+                (click)="stop()">
+          Зберегти
+        </button>
+        <button mat-button
+                color="warn"
+                (click)="onNoClick()"
+                tabindex="-1">
+          Відміна
+        </button>
+      </mat-grid-tile>
+
+    </form>
+  </mat-grid-list>
+</div>
