@@ -31,11 +31,13 @@ export class FilmDialogsComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data.film) {
+      this.genre = this.data.film.genre;
+      console.log(this.genre);
       this.form = this.formBuilder.group({
         name: this.data.film.name || '',
         description: this.data.film.description,
         url: this.data.film.url,
-        genre: '',
+        genre: this.data.film.genre,
         del: false,
       });
     } else {
@@ -71,4 +73,7 @@ export class FilmDialogsComponent implements OnInit {
     });
   }
 
+  compareObjects(o1: any, o2: any): boolean {
+    return o1.name === o2.name && o1.id === o2.id;
+  }
 }
